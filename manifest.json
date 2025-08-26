@@ -1,9 +1,18 @@
 {
-  "id": "com.sample.echarts",
-  "name": "ECharts Custom Widget",
-  "description": "ECharts with external JSON",
-  "scripts": [
-    "https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js",
-    "EChartsWidget.js"
-  ]
+  "id": "com.sap.sample.echarts",
+  "name": "EChartsCustomWidget",
+  "description": "Custom widget that loads ECharts option JSON from GitHub",
+  "version": "1.0.0",
+  "newInstancePrefix": "EChart",
+  "webcomponents": [
+    {
+      "kind": "main",
+      "tag": "com-sap-sample-echarts",
+      "url": "https://raw.githubusercontent.com/Yeonsu11/sac-echarts-demo/main/EChartsWidget.js",
+      "integrity": "sha256-24PjrIsYUeW6aMzak0gURkbzi0hWQW+iaQ7QUXTiDOk="
+    }
+  ],
+  "properties": {},
+  "methods": {},
+  "events": {}
 }
