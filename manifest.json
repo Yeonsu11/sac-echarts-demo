@@ -9,7 +9,8 @@
       "kind": "main",
       "tag": "com-sap-sample-echarts",
       "url": "https://raw.githubusercontent.com/Yeonsu11/sac-echarts-demo/main/EChartsWidget.js",
-      "integrity": "sha256-24PjrIsYUeW6aMzak0gURkbzi0hWQW+iaQ7QUXTiDOk="
+      "integrity": "sha256-ih2Us20RAQ9CaWjbO/LfZPetSX7gTrVlTtbdF6mk4io=",
+      "ignoreIntegrity": true
     }
   ],
   "properties": {},
