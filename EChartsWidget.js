@@ -1,18 +1,22 @@
-(function() { 
-	let template = document.createElement("template");
+(function () {
+  const template = document.createElement("template");
+  template.innerHTML = `
+        <style>
+        </style>
+        <div id="root" style="width: 100%; height: 100%;">
+        Hello Custom Widget
+        </div>
+      `;
+  class Main extends HTMLElement {
+    constructor() {
+      super();
 
-	class ColoredBox extends HTMLElement {
-		constructor() {
-			super(); 
-            console.log("hello? 뭐임");
-			// this.appendChild(template.content.cloneNode(true));
-			// this.addEventListener("click", event => {
-			// 	var event = new Event("onClick");
-			// 	this.dispatchEvent(event);
-			// });
-			// this._props = {};
-		}
-	}
+      this._shadowRoot = this.attachShadow({ mode: "open" });
+      this._shadowRoot.appendChild(template.content.cloneNode(true));
 
-	customElements.define("com-sap-sample-echarts", ColoredBox);
+      this._root = this._shadowRoot.getElementById("root");
+    }
+  }
+
+  customElements.define("com-sap-sample-echarts", Main);
 })();
