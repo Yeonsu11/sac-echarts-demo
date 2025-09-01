@@ -1,43 +1,42 @@
-(function () {
-  let template = document.createElement("template");
-  template.innerHTML = "<div id='echart' style='width:100%; height:100%;'></div>";
+(function() { 
+	let template = document.createElement("template");
+	template.innerHTML = `
+		<style>
+		:host {
+			border-radius: 25px;
+			border-width: 4px;
+			border-color: black;
+			border-style: solid;
+			display: block;
+		} 
+		</style> 
+	`;
 
-  class EChartsWidget extends HTMLElement {
-    constructor() {
-      super();
+	class ColoredBox extends HTMLElement {
+		constructor() {
+			super(); 
+			let shadowRoot = this.attachShadow({mode: "open"});
+			shadowRoot.appendChild(template.content.cloneNode(true));
+			this.addEventListener("click", event => {
+				var event = new Event("onClick");
+				this.dispatchEvent(event);
+			});
+			this._props = {};
+		}
 
-      // 👉 ECharts 라이브러리 로드
-      if (!window.echarts) {
-        const script = document.createElement("script");
-        script.src = "https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js";
-        script.onload = () => this.render();
-        this._shadowRoot.appendChild(script);
-      }
-      
-      this._shadowRoot = this.attachShadow({ mode: "open" });
-      this._shadowRoot.appendChild(template.content.cloneNode(true));
-      this._echartDiv = this._shadowRoot.getElementById("echart");
-    }
+		onCustomWidgetBeforeUpdate(changedProperties) {
+			this._props = { ...this._props, ...changedProperties };
+		}
 
-    connectedCallback() {
-      if (window.echarts) {
-        this.render();
-      }
-    }
+		onCustomWidgetAfterUpdate(changedProperties) {
+			if ("color" in changedProperties) {
+				this.style["background-color"] = changedProperties["color"];
+			}
+			if ("opacity" in changedProperties) {
+				this.style["opacity"] = changedProperties["opacity"];
+			}
+		}
+	}
 
-    render() {
-      if (!window.echarts) return; // 아직 로드 안 됐으면 대기
-
-      let chart = echarts.init(this._echartDiv);
-
-      fetch("https://raw.githubusercontent.com/Yeonsu11/sac-echarts-demo/main/line.json")
-        .then((res) => res.json())
-        .then((option) => {
-          chart.setOption(option);
-        })
-        .catch((err) => console.error("JSON load error:", err));
-    }
-  }
-
-  customElements.define("com-sap-sample-echarts", EChartsWidget);
+	customElements.define("com-sap-sample-coloredbox", ColoredBox);
 })();
