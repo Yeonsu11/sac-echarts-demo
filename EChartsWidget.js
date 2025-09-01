@@ -16,6 +16,8 @@
         script.onload = () => this.render();
         this._shadowRoot.appendChild(script);
       }
+
+      render();
     }
 
     connectedCallback() {
