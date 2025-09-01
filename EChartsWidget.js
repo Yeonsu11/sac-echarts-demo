@@ -5,9 +5,6 @@
   class EChartsWidget extends HTMLElement {
     constructor() {
       super();
-      this._shadowRoot = this.attachShadow({ mode: "open" });
-      this._shadowRoot.appendChild(template.content.cloneNode(true));
-      this._echartDiv = this._shadowRoot.getElementById("echart");
 
       // 👉 ECharts 라이브러리 로드
       if (!window.echarts) {
@@ -16,8 +13,10 @@
         script.onload = () => this.render();
         this._shadowRoot.appendChild(script);
       }
-
-      render();
+      
+      this._shadowRoot = this.attachShadow({ mode: "open" });
+      this._shadowRoot.appendChild(template.content.cloneNode(true));
+      this._echartDiv = this._shadowRoot.getElementById("echart");
     }
 
     connectedCallback() {
