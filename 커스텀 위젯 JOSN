@@ -1,0 +1,122 @@
+커스텀 위젯 JOSN
+
+{
+
+  "id": "DonutChartWidget",
+
+  "name": "Donut Chart Widget",
+
+  "description": "Apache ECharts Donut Chart",
+
+  "version": "1.0.6",
+
+  "newInstancePrefix": "Donut",
+
+  "webcomponents": [
+
+    {
+
+      "kind": "main",
+
+      "tag": "donut-chart",
+
+      "url": "https://mh1662.github.io/SAC_DonutChartWidget/index.js",
+
+      "integrity": "",
+
+      "ignoreIntegrity": true
+
+    }
+
+  ],
+
+  "properties": {
+
+    "width": {
+
+      "type": "integer",
+
+      "default": 600
+
+    },
+
+    "height": {
+
+      "type": "integer",
+
+      "default": 420
+
+    },
+
+    "seriesType": {
+
+      "type" : "string",
+
+      "default" : "line",
+
+      "description": "Series type"
+
+    }
+
+  },
+
+  "methods": {
+
+    "setSeriesType": {
+
+      "description": "Set series type",
+
+      "parameters": [
+
+        {
+
+          "name": "value",
+
+          "type": "string",
+
+          "description": "Series type"
+
+        }
+
+      ]
+
+    }
+
+  },
+
+  "events": {},
+
+  "dataBindings": {
+
+    "dataBinding": {
+
+      "feeds": [
+
+        {
+
+          "id":"dimensions",
+
+          "description": "Dimensions",
+
+          "type": "dimension"
+
+        },
+
+        {
+
+          "id":"measures",
+
+          "description": "Measures",
+
+          "type": "mainStructureMember"
+
+        }
+
+      ]
+
+    }
+
+  }
+
+}
+
